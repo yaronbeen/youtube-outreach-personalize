@@ -301,6 +301,20 @@ Personalization runs inside your existing Claude Code session — no Python scri
 - [bright-data-youtube-outreach](https://github.com/yaronbeen/bright-data-youtube-outreach) — the scraper that finds YouTube channels and their emails (Step 1)
 - This repo is Step 2: personalize and send
 
+## Limitations
+
+This is a simple, scrappy outreach setup — not a full-blown sales platform. Be aware of what it doesn't do:
+
+- **100 emails/day cap** — free Gmail accounts are limited to 100 sends/day via Apps Script. Fine for targeted outreach, not for blasting thousands.
+- **No open/click tracking** — you won't know who opened or clicked. You're flying blind until someone replies.
+- **No automated follow-ups** — this sends the first email only. Follow-up sequences (where most replies come from) require manual work or a separate tool.
+- **No email warmup** — if your Gmail account is new or hasn't sent much, deliverability will be poor. Use an aged inbox.
+- **Single inbox** — no inbox rotation or multiple sender accounts. One Gmail, one send rate.
+- **No bounce handling** — bounced emails show up as errors in the sheet but aren't automatically cleaned from your list.
+- **Review required** — AI-written emails are good but not perfect. Always review `outreach.csv` before sending. Some emails may need manual tweaks.
+
+If you need tracking, follow-up sequences, inbox rotation, or high-volume sending, tools like Instantly or Lemlist exist for a reason. This setup is for people who want to send 50-100 personalized emails without paying $50+/month for it.
+
 ## Disclaimer
 
 This tool is for legitimate business outreach. Be respectful — don't spam, honor unsubscribe requests, and follow applicable email laws (CAN-SPAM, GDPR). The authors are not responsible for how you use this tool.
