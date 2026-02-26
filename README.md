@@ -1,6 +1,6 @@
 # YouTube Outreach Personalizer & Sender
 
-Turn scraped YouTube channels into personalized cold emails and send them — no Instantly, no Lemlist, no API keys, just Claude Code + Google Sheets.
+Turn scraped YouTube channels into personalized cold emails and send them — no Instantly, no Lemlist, no n8n, no Clay no API keys, just Claude Code + Google Sheets.
 
 ## The Problem
 
