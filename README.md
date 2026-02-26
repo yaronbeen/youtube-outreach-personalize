@@ -1,19 +1,19 @@
 # YouTube Outreach Personalizer & Sender (with Bright Data)
 
-Turn scraped YouTube channels into personalized cold emails and send them — no Instantly, no Lemlist, no n8n, no Clay no API keys, just Claude Code + Google Sheets.
+Turn scraped YouTube channels into personalized cold emails and send them — no Instantly, no Lemlist, no n8n, no Clay, just Claude Code + Google Sheets.
 
 ## The Problem
 
 You scraped 500 YouTube channels with emails using [bright-data-youtube-outreach](https://github.com/yaronbeen/bright-data-youtube-outreach). Now what?
 
-Writing personalized emails one by one takes hours. Paying for Instantly or Lemlist costs $50-100+/month. And setting up Python scripts with API keys is friction you don't need.
+Writing personalized emails one by one takes hours. Paying for Instantly or Lemlist costs $37-99/month. And setting up Python scripts with API keys is friction you don't need.
 
 ## The Solution
 
-1. **Type `/personalize-outreach` in Claude Code** — Claude reads your CSV and writes personalized emails directly (no API keys, no Python, no dependencies)
-2. **Optional: Bright Data MCP enrichment** — scrape each channel's YouTube page for recent video titles and about info, making emails way more specific
+1. **Type `/personalize-outreach` in Claude Code** — Claude reads your CSV and writes personalized emails directly (no extra API keys, no Python, no dependencies)
+2. **Optional: [Bright Data](https://get.brightdata.com/1tndi4600b25) MCP enrichment** — scrape each channel's YouTube page for recent video titles and about info, making emails way more specific
 3. **Google Apps Script sends them from YOUR Gmail** with random delays
-4. **Total cost: $0**
+4. **No extra cost** — personalization runs in your existing Claude Code session
 
 ## How It Works
 
@@ -51,16 +51,22 @@ npm install -g @anthropic-ai/claude-code
 
 The Bright Data MCP lets Claude scrape each channel's YouTube page for recent video titles, about page details, and niche signals. This makes emails significantly more specific and personalized.
 
-**Install it:**
+**Option A — SSE (recommended, no local install):**
 
 ```bash
-claude mcp add brightdata -- npx @anthropic-ai/mcp-server-brightdata
+claude mcp add --transport sse brightdata "https://mcp.brightdata.com/sse?token=YOUR_API_TOKEN"
 ```
 
-**Set your API token:**
+**Option B — Local via npm:**
 
 ```bash
-export BRIGHTDATA_API_TOKEN=your_token_here
+claude mcp add brightdata -- npx @brightdata/mcp
+```
+
+Then set the env var (used by the local server):
+
+```bash
+export API_TOKEN=your_token_here
 ```
 
 Get your token at [brightdata.com](https://get.brightdata.com/1tndi4600b25) (free trial available).
@@ -186,7 +192,7 @@ This is the part that actually sends your emails from Gmail, one at a time, with
 ### How drip sending works:
 
 - Sends **one email at a time**
-- Waits **10-30 minutes** (random) between each email
+- Waits **10-29 minutes** (random) between each email
 - Marks each row's status column as `SENT`, `ERROR`, or `SKIP`
 - If you stop and restart, it picks up where it left off (skips rows with a status)
 - Runs entirely on Google's servers — no need to keep anything open
@@ -277,22 +283,22 @@ Yaron
 - **Be specific in the first line** — reference something real about their channel, not "I love your content."
 - **One clear CTA** — don't give them 3 things to do. One ask.
 - **Send from a real, aged inbox** — not a brand new Gmail you created yesterday.
-- **10-30 min delays look natural** — that's what the Apps Script does automatically.
+- **10-29 min random delays look natural** — that's what the Apps Script does automatically.
 - **Follow up** — most replies come from follow-up #2 or #3 (not covered in this repo yet).
 - **Review before sending** — always check `outreach.csv` and send a test email to yourself first.
 
 ## Cost Breakdown
 
-| Component                                                               | Cost                                   |
-| ----------------------------------------------------------------------- | -------------------------------------- |
-| Claude Code (personalization)                                           | **$0** (runs in your existing session) |
-| [Bright Data](https://get.brightdata.com/1tndi4600b25) MCP (enrichment) | Free trial, then per-scrape pricing    |
-| Gmail (free)                                                            | 100 emails/day                         |
-| Gmail (Workspace)                                                       | 1,500 emails/day ($6/mo)               |
-| **vs. Instantly**                                                       | $30-97/month                           |
-| **vs. Lemlist**                                                         | $59-99/month                           |
+| Component                                                               | Cost                                      |
+| ----------------------------------------------------------------------- | ----------------------------------------- |
+| Claude Code (personalization)                                           | Included in your Claude Code subscription |
+| [Bright Data](https://get.brightdata.com/1tndi4600b25) MCP (enrichment) | Free trial, then per-scrape pricing       |
+| Gmail via Apps Script (free account)                                    | 100 emails/day                            |
+| Gmail via Apps Script (Workspace)                                       | 1,500 emails/day (Workspace from $7/mo)   |
+| **vs. Instantly**                                                       | $37-97/month                              |
+| **vs. Lemlist**                                                         | $55-99/month                              |
 
-The personalization itself costs nothing — Claude Code does it as part of your session. No separate API calls, no Python script, no `ANTHROPIC_API_KEY` needed.
+Personalization runs inside your existing Claude Code session — no separate API calls, no Python script, no `ANTHROPIC_API_KEY` needed. The email sending limits above are Google Apps Script quotas (not Gmail's general sending limits).
 
 ## File Structure
 
@@ -303,6 +309,7 @@ The personalization itself costs nothing — Claude Code does it as part of your
 ├── config_example.json     # Example config (copy to config.json)
 ├── sample_channels.csv     # Example input (5 fictional channels)
 ├── sample_outreach.csv     # Example output (personalized emails)
+├── test_e2e.py             # End-to-end tests (31 tests)
 └── .gitignore
 ```
 

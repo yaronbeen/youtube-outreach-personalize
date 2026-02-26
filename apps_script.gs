@@ -269,7 +269,7 @@ function checkQuota() {
   SpreadsheetApp.getUi().alert(
     "Gmail Daily Quota\n\n" +
     "Emails remaining today: " + remaining + "\n\n" +
-    "Free Gmail: 100/day\n" +
-    "Google Workspace: 1,500/day"
+    "Free Gmail (Apps Script limit): 100/day\n" +
+    "Google Workspace (Apps Script limit): 1,500/day"
   );
 }
