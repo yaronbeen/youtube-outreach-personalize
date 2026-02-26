@@ -10,7 +10,7 @@ Writing personalized emails one by one takes hours. Paying for Instantly or Leml
 
 ## The Solution
 
-1. **Type `/personalize-outreach` in Claude Code** — Claude reads your CSV and writes personalized emails directly (no extra API keys, no Python, no dependencies)
+1. **Type `/personalize-outreach` in Claude Code** — Claude reads your CSV and writes personalized emails directly (no Python, no dependencies)
 2. **Optional: [Bright Data](https://get.brightdata.com/1tndi4600b25) MCP enrichment** — scrape each channel's YouTube page for recent video titles and about info, making emails way more specific
 3. **Google Apps Script sends them from YOUR Gmail** with random delays
 4. **No extra cost** — personalization runs in your existing Claude Code session
@@ -294,11 +294,10 @@ Yaron
 | Claude Code (personalization)                                           | Included in your Claude Code subscription |
 | [Bright Data](https://get.brightdata.com/1tndi4600b25) MCP (enrichment) | Free trial, then per-scrape pricing       |
 | Gmail via Apps Script (free account)                                    | 100 emails/day                            |
-| Gmail via Apps Script (Workspace)                                       | 1,500 emails/day (Workspace from $7/mo)   |
 | **vs. Instantly**                                                       | $37-97/month                              |
 | **vs. Lemlist**                                                         | $55-99/month                              |
 
-Personalization runs inside your existing Claude Code session — no separate API calls, no Python script, no `ANTHROPIC_API_KEY` needed. The email sending limits above are Google Apps Script quotas (not Gmail's general sending limits).
+Personalization runs inside your existing Claude Code session — no Python script, no `ANTHROPIC_API_KEY` needed. You do need a [Bright Data](https://get.brightdata.com/1tndi4600b25) API token for the enrichment MCP. The Gmail sending limit above is the Apps Script quota for free accounts.
 
 ## File Structure
 
