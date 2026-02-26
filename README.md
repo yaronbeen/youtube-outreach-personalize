@@ -49,29 +49,13 @@ npm install -g @anthropic-ai/claude-code
 
 ### 2. Bright Data MCP (optional, recommended)
 
-The Bright Data MCP lets Claude scrape each channel's YouTube page for recent video titles, about page details, and niche signals. This makes emails significantly more specific and personalized.
-
-**Option A — SSE (recommended, no local install):**
+The [Bright Data](https://get.brightdata.com/1tndi4600b25) MCP lets Claude scrape each channel's YouTube page for recent video titles, about page details, and niche signals. This makes emails significantly more specific and personalized.
 
 ```bash
 claude mcp add --transport sse brightdata "https://mcp.brightdata.com/sse?token=YOUR_API_TOKEN"
 ```
 
-**Option B — Local via npm:**
-
-```bash
-claude mcp add brightdata -- npx @brightdata/mcp
-```
-
-Then set the env var (used by the local server):
-
-```bash
-export API_TOKEN=your_token_here
-```
-
-Get your token at [brightdata.com](https://get.brightdata.com/1tndi4600b25) (free trial available).
-
-**What it adds:** Without enrichment, emails reference channel name, subscriber count, and niche keyword. With enrichment, emails reference specific recent video titles, about page details, and content themes. See the [enrichment comparison](#with-vs-without-enrichment) below.
+Get your API token at [brightdata.com](https://get.brightdata.com/1tndi4600b25) (free trial available). See the [enrichment comparison](#with-vs-without-enrichment) below for what it adds.
 
 ### 3. Install the Skill
 
