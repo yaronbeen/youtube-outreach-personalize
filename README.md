@@ -1,4 +1,4 @@
-# YouTube Outreach Personalizer & Sender
+# YouTube Outreach Personalizer & Sender (with Bright Data)
 
 Turn scraped YouTube channels into personalized cold emails and send them — no Instantly, no Lemlist, no n8n, no Clay no API keys, just Claude Code + Google Sheets.
 
@@ -63,7 +63,7 @@ claude mcp add brightdata -- npx @anthropic-ai/mcp-server-brightdata
 export BRIGHTDATA_API_TOKEN=your_token_here
 ```
 
-Get your token at [brightdata.com](https://brightdata.com/) (free trial available).
+Get your token at [brightdata.com](https://get.brightdata.com/1tndi4600b25) (free trial available).
 
 **What it adds:** Without enrichment, emails reference channel name, subscriber count, and niche keyword. With enrichment, emails reference specific recent video titles, about page details, and content themes. See the [enrichment comparison](#with-vs-without-enrichment) below.
 
@@ -283,14 +283,14 @@ Yaron
 
 ## Cost Breakdown
 
-| Component                     | Cost                                   |
-| ----------------------------- | -------------------------------------- |
-| Claude Code (personalization) | **$0** (runs in your existing session) |
-| Bright Data MCP (enrichment)  | Free trial, then per-scrape pricing    |
-| Gmail (free)                  | 100 emails/day                         |
-| Gmail (Workspace)             | 1,500 emails/day ($6/mo)               |
-| **vs. Instantly**             | $30-97/month                           |
-| **vs. Lemlist**               | $59-99/month                           |
+| Component                                                               | Cost                                   |
+| ----------------------------------------------------------------------- | -------------------------------------- |
+| Claude Code (personalization)                                           | **$0** (runs in your existing session) |
+| [Bright Data](https://get.brightdata.com/1tndi4600b25) MCP (enrichment) | Free trial, then per-scrape pricing    |
+| Gmail (free)                                                            | 100 emails/day                         |
+| Gmail (Workspace)                                                       | 1,500 emails/day ($6/mo)               |
+| **vs. Instantly**                                                       | $30-97/month                           |
+| **vs. Lemlist**                                                         | $59-99/month                           |
 
 The personalization itself costs nothing — Claude Code does it as part of your session. No separate API calls, no Python script, no `ANTHROPIC_API_KEY` needed.
 
@@ -314,6 +314,8 @@ The personalization itself costs nothing — Claude Code does it as part of your
 ## Disclaimer
 
 This tool is for legitimate business outreach. Be respectful — don't spam, honor unsubscribe requests, and follow applicable email laws (CAN-SPAM, GDPR). The authors are not responsible for how you use this tool.
+
+Some links in this README are affiliate links. If you sign up through them, I may earn a commission at no extra cost to you. I only recommend tools I actually use.
 
 ## License
 
